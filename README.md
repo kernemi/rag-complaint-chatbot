@@ -6,7 +6,7 @@ The CFPB dataset contains complaints across multiple financial products, with Cr
 ## Preprocessing
 The dataset was filtered to include only Credit Cards, Personal Loans, Savings Accounts, and Money Transfers. All complaints without narratives were removed. Text normalization techniques such as lowercasing, removal of boilerplate phrases, and special character stripping were applied to improve embedding quality. The cleaned dataset was saved for downstream embedding and retrieval tasks.
 
-# 📝 TASK 2 REPORT SECTION
+# 📝 TASK 2 REPORT
 
 ## Sampling Strategy
 A stratified sampling approach was used to select 12,000 complaints while preserving the proportional distribution across product categories. This ensured that smaller product groups were not underrepresented during embedding.

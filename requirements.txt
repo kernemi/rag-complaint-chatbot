@@ -6,3 +6,4 @@ scikit-learn
 langchain
 sentence-transformers
 chromadb
+gradio>=4.0,<5.0
