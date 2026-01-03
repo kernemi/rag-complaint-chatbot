@@ -5,3 +5,23 @@ The CFPB dataset contains complaints across multiple financial products, with Cr
 
 ## Preprocessing
 The dataset was filtered to include only Credit Cards, Personal Loans, Savings Accounts, and Money Transfers. All complaints without narratives were removed. Text normalization techniques such as lowercasing, removal of boilerplate phrases, and special character stripping were applied to improve embedding quality. The cleaned dataset was saved for downstream embedding and retrieval tasks.
+
+# 📝 TASK 2 REPORT SECTION
+
+## Sampling Strategy
+A stratified sampling approach was used to select 12,000 complaints while preserving the proportional distribution across product categories. This ensured that smaller product groups were not underrepresented during embedding.
+
+## Chunking Strategy
+Complaint narratives were chunked using a recursive character-based strategy with a chunk size of 500 characters and an overlap of 50 characters. This balanced semantic completeness with retrieval efficiency.
+
+## Embedding Model Choice
+The all-MiniLM-L6-v2 sentence transformer was selected due to its strong semantic performance, low computational cost, and compatibility with the pre-built embeddings used in later stages.
+
+## Vector Store Construction
+Using the pre-built embeddings in complaint_embeddings.parquet, we constructed a persistent ChromaDB collection named complaints_full. Each chunk contains the embedding, text, and metadata (product, issue, company, state, etc.). This allows fast semantic search without recomputing embeddings, ensuring reproducibility and efficiency.
+
+## Advantages of Using Pre-Built Embeddings
+
+1. Saves hours of computation for 464K+ complaints
+2. Guarantees embedding consistency with downstream RAG pipeline
+3. Reduces hardware dependency → everyone in the cohort can run the notebook
