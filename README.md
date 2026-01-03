@@ -16,3 +16,12 @@ Complaint narratives were chunked using a recursive character-based strategy wit
 
 ## Embedding Model Choice
 The all-MiniLM-L6-v2 sentence transformer was selected due to its strong semantic performance, low computational cost, and compatibility with the pre-built embeddings used in later stages.
+
+## Vector Store Construction
+Using the pre-built embeddings in complaint_embeddings.parquet, we constructed a persistent ChromaDB collection named complaints_full. Each chunk contains the embedding, text, and metadata (product, issue, company, state, etc.). This allows fast semantic search without recomputing embeddings, ensuring reproducibility and efficiency.
+
+## Advantages of Using Pre-Built Embeddings
+
+1. Saves hours of computation for 464K+ complaints
+2. Guarantees embedding consistency with downstream RAG pipeline
+3. Reduces hardware dependency → everyone in the cohort can run the notebook
